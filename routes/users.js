@@ -18,7 +18,6 @@ usersRouter.get("/", (req, res) => {
 
 usersRouter.get("/:_id", (req, res) => {
   fs.readFile(usersDataPath, { encoding: "utf8" }, (err, data) => {
-    console.log(data);
     if (err) {
       res.status(500).send({ message: "Запрашиваемый ресурс не найден" });
       return;
