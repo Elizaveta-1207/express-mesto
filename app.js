@@ -7,8 +7,11 @@ const cardsRouter = require("./routes/cards");
 const usersRouter = require("./routes/users");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/", cardsRouter);
-app.use("/", usersRouter);
+app.use("/cards", cardsRouter);
+app.use("/users", usersRouter);
+app.use("/*", (req, res) => {
+  res.status(404).send({ message: "Запрашиваемый ресурс не найден" });
+});
 
 app.listen(PORT, () => {
   // Если всё работает, консоль покажет, какой порт приложение слушает

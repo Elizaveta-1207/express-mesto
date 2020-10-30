@@ -5,10 +5,10 @@ const cardsRouter = require("express").Router();
 
 const cardsDataPath = path.join("./data", "cards.json");
 
-cardsRouter.get("/cards", (req, res) => {
+cardsRouter.get("/", (req, res) => {
   fs.readFile(cardsDataPath, { encoding: "utf8" }, (err, data) => {
     if (err) {
-      res.status(404).send({ message: "Запрашиваемый ресурс не найден" });
+      res.status(500).send({ message: "Запрашиваемый ресурс не найден" });
       return;
     }
     const cards = JSON.parse(data);

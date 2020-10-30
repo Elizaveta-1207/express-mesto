@@ -5,10 +5,10 @@ const usersRouter = require("express").Router();
 
 const usersDataPath = path.join("./data", "users.json");
 
-usersRouter.get("/users", (req, res) => {
+usersRouter.get("/", (req, res) => {
   fs.readFile(usersDataPath, { encoding: "utf8" }, (err, data) => {
     if (err) {
-      res.status(404).send({ message: "Запрашиваемый ресурс не найден" });
+      res.status(500).send({ message: "Запрашиваемый ресурс не найден" });
       return;
     }
     const users = JSON.parse(data);
@@ -16,10 +16,11 @@ usersRouter.get("/users", (req, res) => {
   });
 });
 
-usersRouter.get("/users/:_id", (req, res) => {
+usersRouter.get("/:_id", (req, res) => {
   fs.readFile(usersDataPath, { encoding: "utf8" }, (err, data) => {
+    console.log(data);
     if (err) {
-      res.status(404).send({ message: "Запрашиваемый ресурс не найден" });
+      res.status(500).send({ message: "Запрашиваемый ресурс не найден" });
       return;
     }
 
