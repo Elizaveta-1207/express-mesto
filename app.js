@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 
 const { PORT = 3000 } = process.env;
 const app = express();
-const path = require("path");
 const cardsRouter = require("./routes/cards");
 const usersRouter = require("./routes/users");
 
@@ -18,7 +17,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "public")));
 app.use("/cards", cardsRouter);
 app.use("/users", usersRouter);
 app.use("/*", (req, res) => {

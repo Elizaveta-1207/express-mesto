@@ -20,7 +20,7 @@ module.exports.getUser = (req, res) => {
     })
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === "CastError") {
+      if (err.statusCode === 404) {
         res.status(404).send({ message: "Нет пользователя с таким id" });
         return;
       }
@@ -53,7 +53,7 @@ module.exports.updateUser = (req, res) => {
     })
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === "CastError") {
+      if (err.statusCode === 404) {
         res.status(404).send({ message: "Нет пользователя с таким id" });
         return;
       }
@@ -71,7 +71,7 @@ module.exports.updateAvatar = (req, res) => {
     })
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.message === "CastError") {
+      if (err.statusCode === 404) {
         res.status(404).send({ message: "Нет пользователя с таким id" });
         return;
       }
